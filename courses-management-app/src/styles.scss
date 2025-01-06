@@ -112,7 +112,7 @@
     right: 0;
     background-color: white;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 10;
     display: flex;
@@ -311,7 +311,16 @@
   .errorMsg {
     color: #f21e08;
     background: #fff0f0;
-    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 2s ease-out; /* Apply fade-out transition */
+  }
+  
+  .errorMsg.fade-out {
+    opacity: 0; /* Make the error message fade out */
   }
     
   .successMsg {

@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      // Replace with your actual endpoint
       const response = await fetch('http://localhost:4000/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -25,10 +24,12 @@ export const AuthProvider = ({ children }) => {
       } else {
         console.error('Login failed');
         setIsAuthenticated(false);
+        throw new Error('Error al iniciar sesión');  // Throw error to be caught in LoginForm
       }
     } catch (error) {
       console.error('Error during login:', error);
       setIsAuthenticated(false);
+      throw error; // Rethrow the error to be caught in LoginForm
     }
   };
 
