@@ -142,6 +142,21 @@
     width: 100%;
   }
 
+  .signup-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //min-height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    //border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ADE8F4;
+  }
+
   .login-form-container {
     display: flex;
     flex-direction: column;
@@ -175,6 +190,20 @@
     background-color: #023E8A;
   }
 
+  .signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #03045E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .signup-button:hover {
+    background-color: #023E8A;
+  }
+
   .login-input {
     border-radius: 15px;    /* Set border-radius to 15px */
     border: none;           /* Remove the border */
@@ -194,6 +223,39 @@
   }
   
   .login-subtitle {
+    text-align: center;         /* Center the subtitle text */
+    color: #03045E;           /* Apply the blue color */
+  }
+
+  .login-link {
+    color: #03045E;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+
+  .signup-input {
+    border-radius: 15px;    /* Set border-radius to 15px */
+    border: none;           /* Remove the border */
+    padding: 10px;          /* Optional: Add padding inside input */
+    width: 100%;            /* Make the input field take full width */
+    box-sizing: border-box; /* Ensure padding does not affect the width */
+  }
+  
+  .signup-input:focus {
+    outline: none; /* Remove the default outline on focus */
+  }
+  
+  .signup-title {
+    text-align: center;         /* Center the title text */
+    color: #03045E;           /* Apply the blue color */
+    font-weight: bold;          /* Make the text bold */
+  }
+  
+  .signup-subtitle {
     text-align: center;         /* Center the subtitle text */
     color: #03045E;           /* Apply the blue color */
   }
@@ -326,7 +388,13 @@
   .successMsg {
     color: #00ff00;
     background: #077707;
-    padding: 10px;
+    //padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 2s ease-out; /* Apply fade-out transition */
   }
     
   .centered-message {

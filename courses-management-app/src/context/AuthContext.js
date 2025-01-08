@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
       } else {
         console.error('Login failed');
         setIsAuthenticated(false);
-        throw new Error('Error al iniciar sesión');  // Throw error to be caught in LoginForm
+        throw new Error('Contraseña incorrecta');  // Throw error to be caught in LoginForm
       }
     } catch (error) {
       console.error('Error during login:', error);
