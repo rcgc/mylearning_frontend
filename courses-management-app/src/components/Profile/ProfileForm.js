@@ -29,10 +29,32 @@ const ProfileForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    // Validation patterns for name and lastname
+    const namePattern = /^[a-zA-ZáéíóúÁÉÍÓÚ\s\-]+$/;
+
+    // Validate name and lastname fields
+    if (name === 'name' || name === 'lastname') {
+      if (!namePattern.test(value) && value.trim() !== '') {
+        setErrorMessage(
+          `${name === 'name' ? 'Nombre' : 'Apellido'} tuvo caracteres inválidos.`
+        );
+        setTimeout(() => setErrorMessage(''), 3000); // Clear error message after 3s
+        return; // Prevent invalid value from being set
+      }
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSave = async () => {
+    // Ensure non-empty name and lastname before saving
+    if (!formData.name.trim() || !formData.lastname.trim()) {
+      setErrorMessage('Nombre y apellido no pueden estar vacíos.');
+      setTimeout(() => setErrorMessage(''), 3000); // Clear error message after 3s
+      return;
+    }
+
     try {
       const currentUnixTime = Date.now(); // Current date-time in milliseconds
       const updatedData = {
@@ -54,11 +76,11 @@ const ProfileForm = () => {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      console.log("response value :", response)
+      console.log('Response value:', response);
 
       const resp = await axios.get(`http://localhost:4000/users/${userData._id.$oid}`);
 
-      console.log("resp value: ", resp)
+      console.log('Resp value:', resp);
 
       setUserData(resp.data); // Update AuthContext
       setSuccessMessage('Actualización exitosa');
