@@ -26,7 +26,7 @@ const SignupForm = () => {
       // Check if email exists
       const emailCheckResponse = await axios.post('http://localhost:4000/users/search', { email: email.trim() });
 
-      if (emailCheckResponse.data.exists) {
+      if (emailCheckResponse.data) { // Response is a boolean
         setErrorMessage('Correo existente');
         setFadeOut(false); // Reset fade-out
         setTimeout(() => setFadeOut(true), 2000); // Trigger fade-out after 2 seconds
@@ -44,7 +44,7 @@ const SignupForm = () => {
         major: 'default',
         email: email.trim(),
         password: password.trim(),
-        courses: [],
+        watched_ids: [],
         created_at: {
           "$date": {
             "$numberLong": currentTimestamp.toString(), // Convert to string for BSON

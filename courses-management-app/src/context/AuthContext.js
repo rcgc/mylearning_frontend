@@ -5,7 +5,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState(null); // Store user data
-  const [userCourses, setUserCourses] = useState([]); // Store user's course IDs
+  const [userWatchedIds, setUserWatchedIds] = useState([]); // Store user's watched IDs
 
   const login = async (email, password) => {
     try {
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUserData(data.user);
-        setUserCourses(data.user.courses);
+        setUserWatchedIds(data.user.watched_ids);
         setIsAuthenticated(true);
         console.log('Login successful:', data); // Debugging
       } else {
@@ -36,12 +36,19 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setIsAuthenticated(false);
     setUserData(null);
-    setUserCourses([]);
+    setUserWatchedIds([]);
   };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, userData, userCourses, login, logout }}
+      value={{
+        isAuthenticated,
+        userData,
+        setUserData,
+        userWatchedIds,
+        login,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>

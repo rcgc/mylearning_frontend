@@ -1,7 +1,12 @@
 import React from 'react';
+import ProfileForm from './ProfileForm';
 
 const Profile = () => {
-  return <h2>Profile</h2>;
+  return (
+    <div>
+      <ProfileForm />
+    </div>
+  );
 };
 
 export default Profile;

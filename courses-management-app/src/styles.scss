@@ -26,7 +26,7 @@
   .main-content {
     flex: 1;
     width: 80%;
-    margin: 0 auto;
+    margin: auto auto 30px auto;
   }
     
   header {
@@ -142,21 +142,6 @@
     width: 100%;
   }
 
-  .signup-form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    //min-height: 100vh;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    //border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #ADE8F4;
-  }
-
   .login-form-container {
     display: flex;
     flex-direction: column;
@@ -187,20 +172,6 @@
   }
   
   .login-button:hover {
-    background-color: #023E8A;
-  }
-
-  .signup-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #03045E;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  .signup-button:hover {
     background-color: #023E8A;
   }
 
@@ -237,6 +208,35 @@
     text-decoration: underline;
   }
 
+  .signup-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //min-height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    //border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ADE8F4;
+  }
+
+  .signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #03045E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .signup-button:hover {
+    background-color: #023E8A;
+  }
+
   .signup-input {
     border-radius: 15px;    /* Set border-radius to 15px */
     border: none;           /* Remove the border */
@@ -269,6 +269,116 @@
   .signup-link:hover {
     text-decoration: underline;
   }
+
+  .profile-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //min-height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    //border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ADE8F4;
+  }
+
+  .profile-edit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #03045E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .profile-edit-button:hover {
+    background-color: #023E8A;
+  }
+
+  .profile-save-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #03045E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .profile-save-button:hover {
+    background-color: #023E8A;
+  }
+
+  .profile-cancel-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #00B4D8;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  .profile-cancel-button:hover {
+    background-color: #48CAE4;
+  }
+
+  .profile-input {
+    border-radius: 15px;    /* Set border-radius to 15px */
+    border: none;           /* Remove the border */
+    padding: 10px;          /* Optional: Add padding inside input */
+    width: 100%;            /* Make the input field take full width */
+    box-sizing: border-box; /* Ensure padding does not affect the width */
+  }
+  
+  .profile-input:focus {
+    outline: none; /* Remove the default outline on focus */
+  }
+  
+  .profile-select {
+    width: 100%; /* Set a default width */
+    padding: 10px; /* Add padding for better appearance */
+    background-color: #ffffff; /* White background for contrast */
+    border: 1px solid #ccc; /* Light border for separation */
+    border-radius: 10px; /* Rounded corners for consistency */
+    font-size: 14px; /* Match dropdown text size with your design */
+    color: #333; /* Neutral text color */
+    cursor: pointer; /* Show it's interactive */
+    outline: none; /* Remove default focus outline */
+    //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .profile-select:focus {
+    border: 1px solid #0077B6; /* Highlight border on focus */
+    //box-shadow: 0 0 6px rgba(0, 119, 182, 0.5); /* Glow effect */
+  }
+  
+  .profile-select:disabled {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.5);
+    cursor: not-allowed;
+  }
+
+  .profile-select option {
+    padding: 10px; /* Padding for dropdown options */
+    background-color: #ffffff; /* Keep options background white */
+    color: #333; /* Match the dropdown text color */
+  }
+  
+  .profile-select option:hover {
+    background-color: #f1f1f1; /* Highlight hovered option */
+  }  
+
+  .profile-title {
+    text-align: center;         /* Center the title text */
+    color: #03045E;           /* Apply the blue color */
+    font-weight: bold;          /* Make the text bold */
+  }
     
   h1{
     color:#000000;
@@ -277,11 +387,6 @@
   
   h2 {
     color: #666;
-  }
-  
-  .main-content {
-    width: 80%;
-    margin: auto auto 100px auto;
   }
   
   .main {
@@ -369,7 +474,8 @@
       font-size: 20px;
     }
   }
-    
+   
+  /* Messages */
   .errorMsg {
     color: #f21e08;
     background: #fff0f0;
@@ -462,9 +568,9 @@
   .footer-stripe-text {
     margin: 0;
     font-size: 16px;
-    //font-weight: bold;
   }
 
+  /* Media queries */
   @media screen and (max-width: 400px) {
     h1 {
       font-size: 30px;
