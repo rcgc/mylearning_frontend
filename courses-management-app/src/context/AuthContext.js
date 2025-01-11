@@ -1,11 +1,23 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState(null); // Store user data
-  const [userWatchedIds, setUserWatchedIds] = useState([]); // Store user's watched IDs
+  const [userData, setUserData] = useState(null);
+  const [userWatchedIds, setUserWatchedIds] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    const storedAuthData = localStorage.getItem('authData');
+    if (storedAuthData) {
+      const parsedData = JSON.parse(storedAuthData);
+      setIsAuthenticated(true);
+      setUserData(parsedData.user);
+      setUserWatchedIds(parsedData.user.watched_ids);
+    }
+    setLoading(false); // Done initializing
+  }, []);
 
   const login = async (email, password) => {
     try {
@@ -20,16 +32,16 @@ export const AuthProvider = ({ children }) => {
         setUserData(data.user);
         setUserWatchedIds(data.user.watched_ids);
         setIsAuthenticated(true);
-        console.log('Login successful:', data); // Debugging
+        localStorage.setItem(
+          'authData',
+          JSON.stringify({ user: data.user })
+        );
       } else {
-        console.error('Login failed');
-        setIsAuthenticated(false);
-        throw new Error('Contraseña incorrecta');  // Throw error to be caught in LoginForm
+        throw new Error('Invalid credentials');
       }
     } catch (error) {
-      console.error('Error during login:', error);
       setIsAuthenticated(false);
-      throw error; // Rethrow the error to be caught in LoginForm
+      throw error;
     }
   };
 
@@ -37,6 +49,7 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
     setUserData(null);
     setUserWatchedIds([]);
+    localStorage.removeItem('authData');
   };
 
   return (
@@ -44,10 +57,10 @@ export const AuthProvider = ({ children }) => {
       value={{
         isAuthenticated,
         userData,
-        setUserData,
         userWatchedIds,
         login,
         logout,
+        loading, // Expose loading state
       }}
     >
       {children}
