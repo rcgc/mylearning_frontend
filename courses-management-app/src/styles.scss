@@ -413,7 +413,7 @@
     color: white;
     border: none;
     border-radius: 10px;
-    margin: 10px;
+    margin: 0 10px 0 0;
     cursor: pointer;
   }
 
@@ -428,7 +428,7 @@
     color: white;
     border: none;
     border-radius: 10px;
-    margin: 10px;
+    margin: 0 0 0 0;
     cursor: pointer;
     transition: background-color 0.3s ease; /* Smooth hover transition */
   }
@@ -459,7 +459,87 @@
   .topic-tag:hover {
     background-color: #03045E; /* Background on hover */
     color: white; /* Font color on hover */
-  }  
+  }
+
+  .suggestions-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute;
+    z-index: 1000;
+    width: 33%;
+    border-radius: 10px;
+  }
+  
+  .suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .watched-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //min-height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    //border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ADE8F4;
+  }
+
+  .watched-add-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #03045E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .watched-add-button:hover {
+    background-color: #023E8A;
+  }
+
+  .watched-form-input {
+    border-radius: 15px;    /* Set border-radius to 15px */
+    border: none;           /* Remove the border */
+    padding: 10px;          /* Optional: Add padding inside input */
+    width: 100%;            /* Make the input field take full width */
+    box-sizing: border-box; /* Ensure padding does not affect the width */
+  }
+  
+  .watched-form-input:focus {
+    outline: none; /* Remove the default outline on focus */
+  }
+  
+  .watched-form-title {
+    text-align: center;         /* Center the title text */
+    color: #03045E;           /* Apply the blue color */
+    font-weight: bold;          /* Make the text bold */
+  }
+  
+  .watched-form-link {
+    color: #03045E;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .watched-form-link:hover {
+    text-decoration: underline;
+  }
     
   h1{
     color:#000000;

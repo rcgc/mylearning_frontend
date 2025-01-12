@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png'; // Adjust the path to your logo file
 import { useAuth } from '../context/AuthContext'; // Import AuthContext
@@ -8,6 +8,7 @@ const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false); // State for dropdown visibility
   const [initial, setInitial] = useState(''); // State for storing user's initial
   const navigate = useNavigate(); // Navigation function
+  const dropdownRef = useRef(null); // Ref for dropdown menu
 
   useEffect(() => {
     // If the user is authenticated and userData is available, set the initial letter of the user's name
@@ -16,6 +17,20 @@ const Header = () => {
       setInitial(userInitial);
     }
   }, [isAuthenticated, userData]); // Run whenever authentication status or user data changes
+
+  // Close dropdown when clicking outside of it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false); // Close the dropdown
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleLogout = () => {
     logout(); // Perform logout
@@ -51,7 +66,11 @@ const Header = () => {
               </NavLink>
 
               {/* Circle with Dropdown */}
-              <div className="profile-circle" onClick={() => setShowDropdown(!showDropdown)}>
+              <div
+                className="profile-circle"
+                onClick={() => setShowDropdown((prev) => !prev)}
+                ref={dropdownRef} // Attach the ref to the container
+              >
                 <span className="profile-initial">{initial}</span> {/* Display user's initial */}
                 {/* Dropdown Menu */}
                 {showDropdown && (

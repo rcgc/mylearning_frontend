@@ -50,7 +50,7 @@ const ProfileForm = () => {
   const handleSave = async () => {
     // Ensure non-empty name and lastname before saving
     if (!formData.name.trim() || !formData.lastname.trim()) {
-      setErrorMessage('Nombre y apellido no pueden estar vacíos.');
+      setErrorMessage('Nombre/apellido vacíos');
       setTimeout(() => setErrorMessage(''), 3000); // Clear error message after 3s
       return;
     }
