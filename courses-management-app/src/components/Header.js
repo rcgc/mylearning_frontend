@@ -43,6 +43,9 @@ const Header = () => {
             </>
           ) : (
             <>
+              <NavLink to="/courses/add" className={({ isActive }) => (isActive ? 'link active' : 'link')}>
+                Agregar
+              </NavLink>
               <NavLink to="/courses/search" className={({ isActive }) => (isActive ? 'link active' : 'link')}>
                 Buscar
               </NavLink>
