@@ -390,6 +390,76 @@
      width: 100%;
      margin-bottom: 20px;
   }
+
+  .watched-visit-button {
+    width: 90px;
+    padding: 10px;
+    background-color: #03045E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 10px 10px 10px 0;
+    cursor: pointer;
+  }
+
+  .watched-visit-button:hover {
+    background-color: #023E8A;
+  }
+
+  .watched-edit-button {
+    width: 90px;
+    padding: 10px;
+    background-color: #03045E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .watched-edit-button:hover {
+    background-color: #023E8A;
+  }
+
+  .watched-delete-button {
+    width: 90px;
+    padding: 10px;
+    background-color: #DC3545; /* Bootstrap "Danger" red */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+  }
+  
+  .watched-delete-button:hover {
+    background-color: #B02A37; /* Slightly darker red for hover */
+  }
+
+  .topics-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Space between tags */
+    margin-top: 8px;
+  }
+  
+  .topic-tag {
+    background-color: transparent; /* No background color */
+    color: #03045E; /* Font color */
+    border: 1px solid #03045E; /* Outline color */
+    border-radius: 16px; /* Rounded corners */
+    padding: 6px 12px; /* Padding inside the tag */
+    font-size: 14px; /* Font size */
+    text-transform: capitalize; /* Capitalize first letter */
+    cursor: pointer; /* Pointer on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .topic-tag:hover {
+    background-color: #03045E; /* Background on hover */
+    color: white; /* Font color on hover */
+  }  
     
   h1{
     color:#000000;

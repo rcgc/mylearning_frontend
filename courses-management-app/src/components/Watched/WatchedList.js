@@ -29,6 +29,7 @@ const WatchedList = () => {
             return null; // Skip invalid entries
           }
 
+          const watchedId = watched._id.$oid;
           const courseId = watched.course_id.$oid; // Extract the course ID
           const finishedAt = watched?.finished_at?.$date?.$numberLong || null; // Safely access finished_at
 
@@ -36,6 +37,7 @@ const WatchedList = () => {
             .then((res) => res.json())
             .then((course) => ({
               ...course,
+              watched_id: watchedId,
               finished_at: finishedAt,
             }));
         });
