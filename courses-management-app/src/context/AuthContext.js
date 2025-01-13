@@ -59,6 +59,7 @@ export const AuthProvider = ({ children }) => {
         userData,
         setUserData,
         userWatchedIds,
+        setUserWatchedIds,
         login,
         logout,
         loading, // Expose loading state

@@ -17,7 +17,7 @@ const Watched = ({ _id, title, platform, author, duration, language, description
         <div className="course-details">
           <div><b>Plataforma:</b> {platform}</div>
           <div><b>Autor:</b> {author}</div>
-          <div><b>Duración:</b> {duration} hours</div>
+          <div><b>Duración:</b> {duration} horas</div>
           <div><b>Idioma:</b> {language}</div>
           <div><b>Descripción:</b> {description}</div>
           <div><b>Terminado:</b> {formattedDate}</div>

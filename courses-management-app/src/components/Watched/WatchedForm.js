@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const WatchedForm = ({ onAddWatched }) => {
   const [courseTitle, setCourseTitle] = useState('');
@@ -7,6 +8,8 @@ const WatchedForm = ({ onAddWatched }) => {
   const [courseData, setCourseData] = useState(null);
   const [finishedAt, setFinishedAt] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  
+  const navigate = useNavigate(); // Initialize the navigate function
 
   // Fetch matching courses as user types
   const handleInputChange = async (e) => {
@@ -42,7 +45,7 @@ const WatchedForm = ({ onAddWatched }) => {
 
     const currentUnixTime = Date.now();
     try {
-      const response = await axios.post('http://localhost:4000/watched/', {
+      const dataToSend = {
         course_id: courseData._id.$oid,
         finished_at: finishedAt
           ? { $date: { $numberLong: new Date(finishedAt).getTime().toString() } }
@@ -50,10 +53,17 @@ const WatchedForm = ({ onAddWatched }) => {
         created_at: { $date: { $numberLong: currentUnixTime.toString() } },
         updated_at: { $date: { $numberLong: currentUnixTime.toString() } },
         archived: false,
-      });
+      };
+      
+      const response = await axios.post('http://localhost:4000/watched', dataToSend);
 
-      const watchedId = response.data.watched_id; // Assuming the response contains this
+      //console.log("Response: ", response.data);
+
+      const watchedId = response.data; // Assuming the response contains this
       onAddWatched(watchedId); // Call parent function to handle user update
+
+      // Redirect to home after successfully adding the course
+      navigate('/'); // Redirect to home
     } catch (error) {
       setErrorMessage('Error adding the watched course.');
     }
@@ -62,7 +72,7 @@ const WatchedForm = ({ onAddWatched }) => {
   return (
     <div className="watched-form-container">
       <h2 className="watched-form-title">Agregar</h2>
-      {errorMessage && <p className="error">{errorMessage}</p>}
+      {errorMessage && <p className="errorMsg">{errorMessage}</p>}
 
       <div className="form-group">
         <label>Título</label>

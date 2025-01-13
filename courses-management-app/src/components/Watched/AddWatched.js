@@ -7,15 +7,32 @@ const AddWatched = () => {
   const { userData, setUserData, userWatchedIds, setUserWatchedIds } = useAuth();
 
   const handleAddWatched = async (watchedId) => {
+    // console.log('Received watchedId:', watchedId); // Log the value passed to this function
+
     const updatedWatchedIds = [...userWatchedIds, watchedId];
     const currentUnixTime = Date.now();
 
     try {
-      await axios.put(`http://localhost:4000/users/${userData._id.$oid}`, {
-        ...userData,
-        watched_ids: updatedWatchedIds,
-        updated_at: { $date: { $numberLong: currentUnixTime.toString() } },
-      });
+      const updatedUserData = {
+        name: userData.name,
+        lastname: userData.lastname,
+        major: userData.major,
+        email: userData.email,
+        password: userData.password,
+        watched_ids: updatedWatchedIds, // Update watched_ids
+        created_at: userData.created_at, // Spread the existing userData
+        updated_at: { $date: { $numberLong: currentUnixTime.toString() } }, // Add updated_at field
+      };
+      
+      // console.log("userData: ", userData);
+      // console.log("updatedUserData: ", updatedUserData);
+
+      // Now, use updatedUserData in the axios request
+      await axios.put(
+        `http://localhost:4000/users/${userData._id.$oid}`, 
+        updatedUserData,
+        { headers: { 'Content-Type': 'application/json' } }
+      );
 
       // Update AuthContext
       setUserWatchedIds(updatedWatchedIds);
