@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Card, Modal } from 'react-bootstrap';
 import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
 
@@ -17,7 +17,9 @@ const Watched = ({
   finished_at,
 }) => {
   const { userData, setUserData, userWatchedIds, setUserWatchedIds } = useAuth();
+  const [showConfirmModal, setShowConfirmModal] = useState(false); // State to control the modal visibility
 
+  // Function to handle the delete action after confirmation
   const handleDelete = async () => {
     try {
       // Step 1: Remove the watched_id from the user's watched_ids list
@@ -49,12 +51,16 @@ const Watched = ({
       setUserWatchedIds(updatedWatchedIds);
       setUserData(updatedUserData);
 
-      alert('Watched eliminado exitosamente!');
+      // alert('Watched eliminado exitosamente!');
     } catch (error) {
       console.error('Error deleting watched item:', error);
       alert('Failed to delete the watched item. Please try again.');
     }
   };
+
+  // Toggle modal visibility
+  const handleShow = () => setShowConfirmModal(true);
+  const handleClose = () => setShowConfirmModal(false);
 
   const formattedDate = finished_at
     ? new Date(parseInt(finished_at, 10)).toLocaleDateString('es-ES', {
@@ -113,15 +119,29 @@ const Watched = ({
         >
           Ver
         </Button>
-        {/*<Button className="watched-edit-button">
-          Editar
-        </Button>*/}
+        {/* Confirmation Modal */}
         <Button
           className="watched-delete-button"
-          onClick={handleDelete}
+          onClick={handleShow} // Show confirmation modal when clicked
         >
           Eliminar
         </Button>
+
+        {/* Modal for Confirmation */}
+        <Modal show={showConfirmModal} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>¿Desea eliminar el registro?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Esta acción no puede deshacerse.</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              No
+            </Button>
+            <Button variant="danger" onClick={() => { handleDelete(); handleClose(); }}>
+              Sí
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Card.Body>
     </Card>
   );
