@@ -37,9 +37,9 @@ const Watched = ({ _id, title, platform, author, duration, language, description
         <Button className="watched-visit-button" href={url} target="_blank" rel="noopener noreferrer">
           Ver
         </Button>
-        <Button className="watched-edit-button">
+        {/*<Button className="watched-edit-button">
           Editar
-        </Button>
+        </Button>*/}
         <Button className="watched-delete-button">
           Eliminar
         </Button>
