@@ -82,7 +82,14 @@ const ProfileForm = () => {
 
       console.log('Resp value:', resp);
 
-      setUserData(resp.data); // Update AuthContext
+      // Update AuthContext and localStorage
+      const updatedUser = resp.data;
+      setUserData(updatedUser);
+      localStorage.setItem(
+        'authData',
+        JSON.stringify({ user: updatedUser })
+      );
+
       setSuccessMessage('Actualización exitosa');
       setTimeout(() => setSuccessMessage(''), 3000); // Clear success message after 3s
 

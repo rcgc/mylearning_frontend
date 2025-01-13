@@ -36,7 +36,14 @@ const AddWatched = () => {
 
       // Update AuthContext
       setUserWatchedIds(updatedWatchedIds);
-      setUserData({ ...userData, watched_ids: updatedWatchedIds });
+      const newUserData = { ...userData, watched_ids: updatedWatchedIds };
+      setUserData(newUserData);
+
+      // Update localStorage
+      localStorage.setItem(
+        'authData',
+        JSON.stringify({ user: newUserData })
+      );
     } catch (error) {
       console.error('Error updating user with watched ID:', error);
     }
