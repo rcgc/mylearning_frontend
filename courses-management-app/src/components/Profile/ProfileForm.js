@@ -68,19 +68,19 @@ const ProfileForm = () => {
         },
       };
 
-      console.log('Updated Data:', updatedData); // Log for debugging
+      // console.log('Updated Data:', updatedData); // Log for debugging
 
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:4000/users/${userData._id.$oid}`, // Endpoint to update user
         updatedData,
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      console.log('Response value:', response);
+      // console.log('Response value:', response);
 
       const resp = await axios.get(`http://localhost:4000/users/${userData._id.$oid}`);
 
-      console.log('Resp value:', resp);
+      // console.log('Resp value:', resp);
 
       // Update AuthContext and localStorage
       const updatedUser = resp.data;

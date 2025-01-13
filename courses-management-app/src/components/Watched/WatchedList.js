@@ -10,12 +10,15 @@ const WatchedList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // If userWatchedIds is empty, reset courses and stop loading
     if (!userWatchedIds || userWatchedIds.length === 0) {
+      setCourses([]); // Clear courses when there are no watched IDs
       setLoading(false);
       return;
     }
 
     const fetchWatchedData = async () => {
+      setLoading(true); // Ensure loading is reset for new fetch
       try {
         const watchedPromises = userWatchedIds.map((id) =>
           fetch(`http://localhost:4000/watched/${id}`).then((res) => res.json())
@@ -54,7 +57,7 @@ const WatchedList = () => {
     };
 
     fetchWatchedData();
-  }, [userWatchedIds]);
+  }, [userWatchedIds]); // Refetch when userWatchedIds changes
 
   if (loading) return <Spinner />;
   if (error) return <p>{error}</p>;
@@ -66,7 +69,7 @@ const WatchedList = () => {
           <Watched key={index} {...course} />
         ))
       ) : (
-        <p className="message">Aún no has guardado cursos</p>
+        <p className="message">Aún no has registrado cursos</p>
       )}
     </div>
   );
